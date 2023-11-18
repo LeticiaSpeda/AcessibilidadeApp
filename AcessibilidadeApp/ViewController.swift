@@ -1,19 +1,21 @@
-//
-//  ViewController.swift
-//  AcessibilidadeApp
-//
-//  Created by Leticia Speda on 18/11/23.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+    
+    private var viewScreen = ViewScreen()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+
+        viewScreen = ViewScreen()
+        view = viewScreen
     }
 
+    override func loadViewIfNeeded() {
+        super.loadView()
+
+    }
 
 }
 
