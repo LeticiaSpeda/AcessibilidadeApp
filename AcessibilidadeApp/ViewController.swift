@@ -8,5 +8,24 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         view = viewScreen
     }
+
+    override func loadView() {
+        viewScreen.delegate = self
+    }
+
+    func setupAccesbility() {
+        viewScreen.positionOneLabel.isAccessibilityElement = true
+        viewScreen.positionTwoLabel.isAccessibilityElement = true
+        viewScreen.positionThreeLabel.isAccessibilityElement = true
+        viewScreen.positionFourLabel.isAccessibilityElement = true
+        viewScreen.positionFiveLabel.isAccessibilityElement = true
+        viewScreen.loginButton.isAccessibilityElement = true
+    }
 }
 
+extension ViewController: ViewScreenDelegate {
+    func tappedLoginButton() {
+        
+    }
+
+}

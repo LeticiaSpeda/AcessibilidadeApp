@@ -6,57 +6,63 @@ protocol ViewScreenDelegate: AnyObject {
 
 final class ViewScreen: UIView, ViewCode {
 
-    private weak var delegate: ViewScreenDelegate?
+     weak var delegate: ViewScreenDelegate?
 
-    private lazy var titleLabel: UILabel = {
+    private(set) lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Acessibilidade"
+        label.textColor = .black
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.enableViewCode()
         return label
     }()
 
-    private lazy var positionOneLabel: UILabel = {
+    private(set) lazy var positionOneLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
+        label.textColor = .black
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.enableViewCode()
         return label
     }()
 
-    private lazy var positionTwoLabel: UILabel = {
+    private(set) lazy var positionTwoLabel: UILabel = {
         let label = UILabel()
         label.text = "2"
+        label.textColor = .black
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.enableViewCode()
         return label
     }()
 
-    private lazy var positionThreeLabel: UILabel = {
+    private(set) lazy var positionThreeLabel: UILabel = {
         let label = UILabel()
         label.text = "3"
+        label.textColor = .black
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.enableViewCode()
         return label
     }()
 
-    private lazy var positionFourLabel: UILabel = {
+    private(set) lazy var positionFourLabel: UILabel = {
         let label = UILabel()
         label.text = "4"
+        label.textColor = .black
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.enableViewCode()
         return label
     }()
 
-    private lazy var positionFiveLabel: UILabel = {
+    private(set) lazy var positionFiveLabel: UILabel = {
         let label = UILabel()
         label.text = "5"
+        label.textColor = .black
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.enableViewCode()
         return label
     }()
 
-    private lazy var loginButton: UIButton = {
+    private(set) lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
         button.backgroundColor = .blue
@@ -74,10 +80,6 @@ final class ViewScreen: UIView, ViewCode {
 
     @objc func handleLoginButton() {
         delegate?.tappedLoginButton()
-    }
-
-    func setupActions() {
-        loginButton.addTarget(self, action: #selector(handleLoginButton), for: .touchUpInside)
     }
 
     func setupHierarchy() {
@@ -160,8 +162,13 @@ final class ViewScreen: UIView, ViewCode {
             constant: 20
         ),
          loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-         loginButton.widthAnchor.constraint(equalToConstant: 80)
+         loginButton.widthAnchor.constraint(equalToConstant: 100),
+         loginButton.heightAnchor.constraint(equalToConstant: 40),
         ]
+    }
+
+    func setupActions() {
+        loginButton.addTarget(self, action: #selector(handleLoginButton), for: .touchUpInside)
     }
 
     func setupStyle() {
