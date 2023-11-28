@@ -6,7 +6,7 @@ protocol ViewScreenDelegate: AnyObject {
 
 final class ViewScreen: UIView, ViewCode {
 
-     weak var delegate: ViewScreenDelegate?
+    weak var delegate: ViewScreenDelegate?
 
     private(set) lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -70,6 +70,12 @@ final class ViewScreen: UIView, ViewCode {
         return button
     }()
 
+    private(set) lazy var personImageView: UIImageView = {
+        let image = UIImageView(image: UIImage(systemName: "person"))
+        image.enableViewCode()
+        return image
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -90,6 +96,7 @@ final class ViewScreen: UIView, ViewCode {
         addSubview(positionFourLabel)
         addSubview(positionFiveLabel)
         addSubview(loginButton)
+        addSubview(personImageView)
     }
 
     func setupcontraints() {
@@ -100,7 +107,8 @@ final class ViewScreen: UIView, ViewCode {
             setupPositionThreeLabelConstraints() +
             setupPositionFourLabelConstraints() +
             setupPositionFiveLabelConstraints() +
-            setupLoginButtonConstraints()
+            setupLoginButtonConstraints() +
+            setupImageViewConstraints()
         )
     }
 
@@ -164,6 +172,20 @@ final class ViewScreen: UIView, ViewCode {
          loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
          loginButton.widthAnchor.constraint(equalToConstant: 100),
          loginButton.heightAnchor.constraint(equalToConstant: 40),
+        ]
+    }
+
+    func setupImageViewConstraints() -> [NSLayoutConstraint] {
+        [personImageView.topAnchor.constraint(
+            equalTo: loginButton.bottomAnchor,
+            constant: 20
+        ),
+         personImageView.centerXAnchor.constraint(
+            equalTo: centerXAnchor
+        ),
+         personImageView.heightAnchor.constraint(equalToConstant: 120),
+         personImageView.widthAnchor.constraint(equalToConstant: 120)
+
         ]
     }
 

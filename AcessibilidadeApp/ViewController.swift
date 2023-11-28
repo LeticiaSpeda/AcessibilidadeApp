@@ -1,7 +1,6 @@
 import UIKit
 
 final class ViewController: UIViewController {
-    
     private var viewScreen = ViewScreen()
 
     override func viewDidLoad() {
@@ -28,6 +27,7 @@ final class ViewController: UIViewController {
         viewScreen.positionFourLabel.isAccessibilityElement = true
         viewScreen.positionFiveLabel.isAccessibilityElement = true
         viewScreen.loginButton.isAccessibilityElement = true
+        viewScreen.personImageView.isAccessibilityElement = true
     }
 
     private func setupLabelAcessibility() {
@@ -36,6 +36,7 @@ final class ViewController: UIViewController {
         viewScreen.positionThreeLabel.accessibilityLabel = "Posição tres"
         viewScreen.positionFourLabel.accessibilityLabel = "Posição quatro"
         viewScreen.positionFiveLabel.accessibilityLabel = "Posição cinco"
+        viewScreen.personImageView.accessibilityLabel = "Imagem de um icone de pessoa"
     }
 
     private func setupTraitsAcessibility() {
@@ -46,14 +47,16 @@ final class ViewController: UIViewController {
         viewScreen.positionFiveLabel.accessibilityTraits = .staticText
         viewScreen.loginButton.accessibilityTraits = .button
         viewScreen.titleLabel.accessibilityTraits = .header
+        viewScreen.personImageView.accessibilityTraits = .image
     }
-
 
 }
 
 extension ViewController: ViewScreenDelegate {
     func tappedLoginButton() {
-
+        DispatchQueue.main.async {
+            UIAccessibility.post(notification: .screenChanged, argument: "Teste o Botao foi pressionado")
+        }
     }
 
 }
